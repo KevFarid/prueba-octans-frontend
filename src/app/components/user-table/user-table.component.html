@@ -1,0 +1,24 @@
+<table class="table table-hover animate__animated animate__fadeIn">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre del Usuario</th>
+        <th scope="col">Activo</th>
+        <th scope="col">Rol</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataUsers" (click)="onClick(item.id_user)" class="animate__animated animate__flipInX">
+        <th scope="row">{{item.id_user}}</th>
+        <td>{{item.name}}</td>
+        <td>
+            <span class="badge bg-success" *ngIf="item.active === 'YES'">SI</span>
+            <span class="badge bg-danger" *ngIf="item.active === 'NO'">NO</span>
+        </td>
+        <td>{{item.id_role | roles}}</td>
+      </tr>
+    </tbody>
+</table>
+<div class="alert alert-warning animate__animated animate__fadeIn" *ngIf="dataUsers.length < 1">
+  <strong>Oh no!</strong> Información de los usurios aun no encontrada
+</div>

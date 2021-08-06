@@ -1,0 +1,58 @@
+<div *ngIf="respMessage.message !==''" class="animate__animated animate__fadeIn">
+    <div class="alert alert-danger" *ngIf="!respMessage.status">
+        <h4 class="alert-heading">Error</h4>
+        <p class="mb-0">{{respMessage.message}}</p>
+    </div>
+    <div class="alert alert-success" *ngIf="respMessage.status">
+        <h4 class="alert-heading">Felicidades</h4>
+        <p class="mb-0">{{respMessage.message}}</p>
+    </div>
+</div>
+<form [formGroup]="form">
+    <div class="form-group">
+        <label for="inputID" class="form-label mt-4">ID del usuario</label>
+        <input type="text" readonly="" class="form-control" id="inputID" aria-describedby="ID" placeholder="{{userData.id_user}}" *ngIf="statusForm !== 'NEW'">
+        <input type="text" readonly="" class="form-control" id="inputID" aria-describedby="ID" placeholder="{{lastIdUsers + 1}}" *ngIf="statusForm === 'NEW'">
+    </div>
+    <div class="form-group">
+        <label for="inputName" class="form-label mt-4">Nombre</label>
+        <input type="text" class="form-control" id="inputName" aria-describedby="name" placeholder="Nombre" formControlName="name">
+    </div>
+    <div class="form-group">
+        <label for="selectRole" class="form-label mt-4">Rol</label>
+        <select class="form-select" id="selectRole" formControlName="id_role">
+          <option *ngFor="let role of roleList" value="{{role.id_role}}">{{role.name}}</option>
+        </select>
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="switchAsctive" formControlName="active">
+        <label class="form-check-label" for="switchAsctive">Activo</label>
+    </div>
+    <div class="row d-flex justify-content-end btn">
+        <div class="col-auto animate__animated animate__fadeIn" *ngIf="statusForm === 'DISABLED'">
+            <button type="button" class="btn btn-success btn-sm" (click)="newUser()">
+                <i class="fas fa-user-plus"></i> Nuevo
+            </button>
+        </div>
+        <div class="col-auto animate__animated animate__fadeIn" *ngIf="statusForm !== 'DISABLED'">
+            <button type="submit" class="btn btn-primary btn-sm" (click)="saveUser()">
+                <i class="fas fa-save"></i> Guardar
+            </button>
+        </div>
+        <div class="col-auto animate__animated animate__fadeIn" *ngIf="statusForm === 'DISABLED' && idUser !== 0">
+            <button type="button" class="btn btn-info btn-sm" (click)="editUser()"> 
+                <i class="fas fa-user-edit"></i> Editar
+            </button>
+        </div>
+        <div class="col-auto animate__animated animate__fadeIn" *ngIf="statusForm !=='NEW' && idUser !== 0">
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser()">
+                <i class="fas fa-user-slash"></i> Eliminar
+            </button>
+        </div>
+        <div class="col-auto animate__animated animate__fadeIn" *ngIf="statusForm !== 'DISABLED'">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="cancelForm()">
+                <i class="fas fa-ban"></i> Cancelar
+            </button>
+        </div>
+    </div>
+</form>

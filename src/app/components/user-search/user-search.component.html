@@ -1,0 +1,15 @@
+<form>
+    <fieldset>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="nameSearch" placeholder="Buscar por nombre" [(ngModel)]="workSearch" name="workSearch">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" (click)="searchName()"><i class="fas fa-search"></i> Buscar</button>
+        </div>
+        <div class="col-auto">
+            <button  class="btn btn-secondary" (click)="clearWork()"><i class="fas fa-eraser"></i> Limpiar</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>

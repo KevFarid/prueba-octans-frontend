@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<div class="container card">
+    <div class="row">
+        <app-user-search class="search" (dataFilter)="dataFilter($event)" [updateInfo]="updateInfo"></app-user-search>
+        <div class="col-md">
+            <app-user-table [dataUsers]="dataUsers" (userSelect)="userSelect($event)"></app-user-table>
+        </div>
+        <div class="col-md">
+            <app-user-form [idUser]="idUser" (updateInfo)="newInfo($event)"></app-user-form>
+        </div>
+    </div>
+</div>
